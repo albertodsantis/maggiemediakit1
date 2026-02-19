@@ -1,0 +1,331 @@
+import React, { useState } from 'react';
+import { Instagram, Globe, Mail, MapPin, ArrowUpRight, Camera, Video, Mic, Users, TrendingUp, BarChart3, Download } from 'lucide-react';
+
+const MediaKit = () => {
+  // -----------------------------------------------------------------------
+  // ZONA DE EDICIÓN DE DATOS (DATA EDITING ZONE)
+  // Alberto, aquí es donde pondremos la información real de Maggie más adelante.
+  // -----------------------------------------------------------------------
+  const [data] = useState({
+    profile: {
+      name: "Maggie Dayz",
+      tagline: "Lifestyle | Fashion | Authentic Living",
+      location: "Madrid, España / Caracas, Venezuela",
+      email: "hello@maggiedayz.com",
+      website: "www.maggiedayz.com",
+      instagram: "@maggiedayz",
+      bio_intro: "¡Hola! Soy Maggie.",
+      bio_text: "Mi pasión es contar historias a través de la moda y el estilo de vida. Busco transmitir un impacto positivo y muy estético, conectando de manera cercana y elegante con una comunidad que valora la autenticidad.",
+      bio_sub: "Creo contenido que inspira, educa y conecta marcas con personas reales.",
+    },
+    stats: {
+      followers: "45.2K",
+      engagement: "6.8%",
+      monthly_reach: "120K+",
+      avg_views: "15K"
+    },
+    demographics: {
+      gender: { women: 85, men: 15 },
+      top_cities: [
+        { name: "Caracas", percent: 40 },
+        { name: "Madrid", percent: 35 },
+        { name: "Miami", percent: 15 },
+        { name: "Valencia", percent: 10 },
+      ],
+      age_ranges: [
+        { range: "18-24", percent: 20 },
+        { range: "25-34", percent: 55 }, // El target principal similar a Viena/Valerie
+        { range: "35-44", percent: 20 },
+        { range: "45+", percent: 5 },
+      ]
+    },
+    services: [
+      {
+        title: "Instagram Post / Carrusel",
+        price: "€400",
+        desc: "Set de 4-6 fotografías de alta calidad resaltando tu producto con mi estilo editorial.",
+        icon: <Camera className="w-6 h-6" />
+      },
+      {
+        title: "Reels & Video Content",
+        price: "€650",
+        desc: "Narrativa visual dinámica. Incluye conceptualización, grabación y edición en tendencia.",
+        icon: <Video className="w-6 h-6" />
+      },
+      {
+        title: "Set de Stories (Ráfaga)",
+        price: "€300",
+        desc: "Secuencia de 3-5 stories con storytelling, stickers de interacción y Link directo.",
+        icon: <ArrowUpRight className="w-6 h-6" />
+      },
+      {
+        title: "Brand Ambassador / Eventos",
+        price: "A consultar",
+        desc: "Presencia en eventos, hosting o representación de marca a largo plazo.",
+        icon: <Mic className="w-6 h-6" />
+      }
+    ],
+    brands: [
+      "Zara", "Samsung", "Polar Pilsen", "Maybelline", "Nike", "Local Designer"
+    ]
+  });
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  return (
+    <div className="min-h-screen bg-[#FDFBF7] text-neutral-800 font-sans selection:bg-orange-200">
+      
+      {/* Estilos específicos para impresión/PDF */}
+      <style>{`
+        @media print {
+          @page {
+            margin: 0;
+            size: auto;
+          }
+          body {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+          .no-print {
+            display: none !important;
+          }
+          /* Asegura saltos de página limpios */
+          section {
+            break-inside: avoid;
+            page-break-inside: avoid;
+          }
+          /* Fuerza la impresión de fondos de colores */
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
+        }
+      `}</style>
+
+      {/* --- HERO SECTION --- */}
+      <header className="relative w-full h-[90vh] flex flex-col justify-center items-center overflow-hidden">
+        {/* Abstract Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full z-0 opacity-10">
+           <div className="absolute top-10 left-10 w-64 h-64 bg-orange-300 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
+           <div className="absolute top-10 right-10 w-64 h-64 bg-purple-300 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
+           <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-pink-300 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
+        </div>
+
+        <div className="z-10 text-center px-4 animate-fade-in-up">
+          <h2 className="text-sm md:text-base tracking-[0.3em] uppercase mb-4 text-gray-500">Media Kit 2026</h2>
+          <h1 className="text-6xl md:text-9xl font-serif font-light tracking-tighter mb-4 text-gray-900">
+            {data.profile.name.split(' ')[0]}
+            <span className="italic font-serif text-orange-400">{data.profile.name.split(' ')[1]}</span>
+          </h1>
+          <p className="text-xl md:text-2xl font-light tracking-wide text-gray-600 mb-8">{data.profile.tagline}</p>
+          
+          <div className="flex gap-4 justify-center flex-wrap no-print">
+            <a href={`https://instagram.com/${data.profile.instagram.replace('@','')}`} className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition shadow-lg">
+              <Instagram size={18} />
+              {data.profile.instagram}
+            </a>
+            <button className="flex items-center gap-2 bg-white text-black border border-gray-200 px-6 py-3 rounded-full hover:bg-gray-50 transition shadow-sm">
+              <Mail size={18} />
+              Contacto
+            </button>
+            <button 
+              onClick={handlePrint}
+              className="flex items-center gap-2 bg-orange-100 text-orange-900 border border-orange-200 px-6 py-3 rounded-full hover:bg-orange-200 transition shadow-sm font-medium"
+            >
+              <Download size={18} />
+              Descargar PDF
+            </button>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 animate-bounce text-gray-400 no-print">
+          <ArrowUpRight className="rotate-[135deg]" />
+        </div>
+      </header>
+
+      {/* --- BIO SECTION (Inspired by Viena) --- */}
+      <section className="py-20 px-6 md:px-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center break-inside-avoid">
+        <div className="relative">
+            {/* Placeholder for Maggie's Photo */}
+            <div className="aspect-[3/4] bg-gray-200 rounded-xl overflow-hidden relative shadow-2xl">
+                <div className="absolute inset-0 flex items-center justify-center text-gray-400 flex-col">
+                    <Camera size={48} className="mb-2 opacity-50"/>
+                    <span className="uppercase tracking-widest text-sm">Foto de Maggie</span>
+                </div>
+                {/* Decorative Frame */}
+                <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-orange-200 rounded-xl -z-10"></div>
+            </div>
+        </div>
+        <div>
+          <h3 className="text-4xl font-serif mb-6">{data.profile.bio_intro}</h3>
+          <p className="text-lg text-gray-600 leading-relaxed mb-6">
+            {data.profile.bio_text}
+          </p>
+          <p className="text-lg text-gray-600 leading-relaxed font-medium">
+            {data.profile.bio_sub}
+          </p>
+          
+          <div className="mt-8 flex gap-2 flex-wrap">
+            {["Fashion", "Beauty", "Lifestyle", "Travel"].map(tag => (
+              <span key={tag} className="px-4 py-1 bg-orange-50 text-orange-800 text-xs uppercase tracking-wider rounded-full">#{tag}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- STATS DASHBOARD (Inspired by Valerie's Data) --- */}
+      <section className="py-20 bg-white border-y border-gray-100 break-inside-avoid">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-12">
+            <h3 className="text-3xl font-serif">Community Insights</h3>
+            <span className="text-sm text-gray-400">Actualizado: Octubre 2025</span>
+          </div>
+
+          {/* Key Metrics Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div className="p-6 bg-[#FDFBF7] rounded-2xl text-center hover:shadow-md transition">
+              <Users className="w-8 h-8 mx-auto mb-3 text-orange-400" />
+              <div className="text-4xl font-bold mb-1">{data.stats.followers}</div>
+              <div className="text-xs uppercase tracking-widest text-gray-500">Seguidores</div>
+            </div>
+            <div className="p-6 bg-[#FDFBF7] rounded-2xl text-center hover:shadow-md transition">
+              <TrendingUp className="w-8 h-8 mx-auto mb-3 text-purple-400" />
+              <div className="text-4xl font-bold mb-1">{data.stats.engagement}</div>
+              <div className="text-xs uppercase tracking-widest text-gray-500">Engagement Rate</div>
+            </div>
+            <div className="p-6 bg-[#FDFBF7] rounded-2xl text-center hover:shadow-md transition">
+              <Globe className="w-8 h-8 mx-auto mb-3 text-blue-400" />
+              <div className="text-4xl font-bold mb-1">{data.stats.monthly_reach}</div>
+              <div className="text-xs uppercase tracking-widest text-gray-500">Alcance Mensual</div>
+            </div>
+            <div className="p-6 bg-[#FDFBF7] rounded-2xl text-center hover:shadow-md transition">
+              <BarChart3 className="w-8 h-8 mx-auto mb-3 text-green-400" />
+              <div className="text-4xl font-bold mb-1">{data.stats.avg_views}</div>
+              <div className="text-xs uppercase tracking-widest text-gray-500">Avg. Views</div>
+            </div>
+          </div>
+
+          {/* Detailed Demographics */}
+          <div className="grid md:grid-cols-3 gap-12">
+            
+            {/* Gender Split */}
+            <div className="bg-[#FDFBF7] p-8 rounded-2xl break-inside-avoid">
+              <h4 className="uppercase tracking-widest text-sm text-gray-500 mb-6 font-bold">Audiencia</h4>
+              <div className="flex items-end justify-center gap-8 h-40">
+                <div className="text-center w-24">
+                   <div className="text-2xl font-bold mb-2">{data.demographics.gender.women}%</div>
+                   <div className="h-32 w-full bg-orange-200 rounded-t-lg relative">
+                      <div className="absolute bottom-2 w-full text-center text-xs font-bold text-orange-800">Mujeres</div>
+                   </div>
+                </div>
+                <div className="text-center w-24">
+                   <div className="text-2xl font-bold mb-2">{data.demographics.gender.men}%</div>
+                   <div className="h-12 w-full bg-gray-300 rounded-t-lg relative">
+                      <div className="absolute -top-6 w-full text-center text-xs font-bold text-gray-600">Hombres</div>
+                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Age Ranges */}
+            <div className="bg-[#FDFBF7] p-8 rounded-2xl break-inside-avoid">
+              <h4 className="uppercase tracking-widest text-sm text-gray-500 mb-6 font-bold">Rango de Edad</h4>
+              <div className="space-y-4">
+                {data.demographics.age_ranges.map((age, i) => (
+                  <div key={i}>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span>{age.range}</span>
+                      <span className="font-bold">{age.percent}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div 
+                        className="bg-gray-800 h-2 rounded-full" 
+                        style={{ width: `${age.percent}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Locations */}
+            <div className="bg-[#FDFBF7] p-8 rounded-2xl break-inside-avoid">
+              <h4 className="uppercase tracking-widest text-sm text-gray-500 mb-6 font-bold">Top Cities</h4>
+              <div className="space-y-4">
+                 {data.demographics.top_cities.map((city, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                        <MapPin size={16} className="text-orange-400"/>
+                        <span className="flex-1 font-medium">{city.name}</span>
+                        <span className="bg-white px-2 py-1 rounded text-xs font-bold shadow-sm">{city.percent}%</span>
+                    </div>
+                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- VISUAL PORTFOLIO GRID --- */}
+      <section className="py-6 overflow-hidden break-inside-avoid">
+         <div className="flex gap-4 min-w-full overflow-x-auto pb-4 px-4 no-scrollbar">
+            {[1,2,3,4,5].map((item) => (
+                <div key={item} className="min-w-[250px] md:min-w-[350px] aspect-[4/5] bg-gray-200 rounded-lg flex items-center justify-center relative group overflow-hidden">
+                    <span className="text-gray-400">Content Preview {item}</span>
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+            ))}
+         </div>
+      </section>
+
+      {/* --- SERVICES / RATE CARD --- */}
+      <section className="py-20 max-w-5xl mx-auto px-6 break-before-page">
+        <div className="text-center mb-16">
+          <h3 className="text-4xl font-serif mb-4">Trabajemos Juntos</h3>
+          <p className="text-gray-600 max-w-xl mx-auto">Opciones de colaboración diseñadas para maximizar el alcance y la estética de tu marca.</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {data.services.map((service, index) => (
+            <div key={index} className="border border-gray-200 p-8 rounded-xl hover:border-orange-300 hover:bg-white hover:shadow-xl transition duration-300 bg-[#FDFBF7] break-inside-avoid">
+              <div className="flex justify-between items-start mb-4">
+                <div className="p-3 bg-white rounded-full shadow-sm text-gray-800">
+                    {service.icon}
+                </div>
+                <span className="text-xl font-bold font-serif">{service.price}</span>
+              </div>
+              <h4 className="text-xl font-bold mb-2">{service.title}</h4>
+              <p className="text-gray-600 text-sm leading-relaxed">{service.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* --- BRANDS --- */}
+      <section className="py-16 border-t border-gray-200 text-center break-inside-avoid">
+        <p className="uppercase tracking-widest text-xs text-gray-500 mb-8">Marcas que confían en mí</p>
+        <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 px-6">
+            {data.brands.map((brand, i) => (
+                <span key={i} className="text-2xl font-serif font-bold text-gray-400 hover:text-gray-800 transition cursor-default">{brand}</span>
+            ))}
+        </div>
+      </section>
+
+      {/* --- FOOTER --- */}
+      <footer className="bg-gray-900 text-white py-20 text-center no-print">
+         <h2 className="text-4xl md:text-6xl font-serif mb-8">Let's create magic.</h2>
+         <p className="mb-8 text-gray-400">¿Tienes un proyecto en mente? Hablemos.</p>
+         <a href={`mailto:${data.profile.email}`} className="inline-block bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-orange-200 transition">
+            {data.profile.email}
+         </a>
+         <div className="mt-12 text-xs text-gray-600">
+            &copy; 2026 {data.profile.name}. Todos los derechos reservados.
+         </div>
+      </footer>
+    </div>
+  );
+};
+
+export default MediaKit;
