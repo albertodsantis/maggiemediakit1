@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import { Instagram, Globe, Mail, MapPin, ArrowUpRight, Camera, Video, Mic, Users, TrendingUp, BarChart3, Download } from 'lucide-react';
 
 const MediaKit = () => {
-  // -----------------------------------------------------------------------
-  // ZONA DE EDICIÓN DE DATOS (DATA EDITING ZONE)
-  // Alberto, aquí es donde pondremos la información real de Maggie más adelante.
-  // -----------------------------------------------------------------------
   const [data] = useState({
     profile: {
       name: "Maggie Dayz",
@@ -34,7 +30,7 @@ const MediaKit = () => {
       ],
       age_ranges: [
         { range: "18-24", percent: 20 },
-        { range: "25-34", percent: 55 }, // El target principal similar a Viena/Valerie
+        { range: "25-34", percent: 55 },
         { range: "35-44", percent: 20 },
         { range: "45+", percent: 5 },
       ]
@@ -76,8 +72,7 @@ const MediaKit = () => {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] text-neutral-800 font-sans selection:bg-orange-200">
-      
-      {/* Estilos específicos para impresión/PDF */}
+
       <style>{`
         @media print {
           @page {
@@ -91,12 +86,10 @@ const MediaKit = () => {
           .no-print {
             display: none !important;
           }
-          /* Asegura saltos de página limpios */
           section {
             break-inside: avoid;
             page-break-inside: avoid;
           }
-          /* Fuerza la impresión de fondos de colores */
           * {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
@@ -104,9 +97,7 @@ const MediaKit = () => {
         }
       `}</style>
 
-      {/* --- HERO SECTION --- */}
       <header className="relative w-full h-[90vh] flex flex-col justify-center items-center overflow-hidden">
-        {/* Abstract Background Elements */}
         <div className="absolute top-0 left-0 w-full h-full z-0 opacity-10">
            <div className="absolute top-10 left-10 w-64 h-64 bg-orange-300 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
            <div className="absolute top-10 right-10 w-64 h-64 bg-purple-300 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
@@ -120,7 +111,7 @@ const MediaKit = () => {
             <span className="italic font-serif text-orange-400">{data.profile.name.split(' ')[1]}</span>
           </h1>
           <p className="text-xl md:text-2xl font-light tracking-wide text-gray-600 mb-8">{data.profile.tagline}</p>
-          
+
           <div className="flex gap-4 justify-center flex-wrap no-print">
             <a href={`https://instagram.com/${data.profile.instagram.replace('@','')}`} className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition shadow-lg">
               <Instagram size={18} />
@@ -130,7 +121,7 @@ const MediaKit = () => {
               <Mail size={18} />
               Contacto
             </button>
-            <button 
+            <button
               onClick={handlePrint}
               className="flex items-center gap-2 bg-orange-100 text-orange-900 border border-orange-200 px-6 py-3 rounded-full hover:bg-orange-200 transition shadow-sm font-medium"
             >
@@ -140,22 +131,18 @@ const MediaKit = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
         <div className="absolute bottom-10 animate-bounce text-gray-400 no-print">
           <ArrowUpRight className="rotate-[135deg]" />
         </div>
       </header>
 
-      {/* --- BIO SECTION (Inspired by Viena) --- */}
       <section className="py-20 px-6 md:px-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center break-inside-avoid">
         <div className="relative">
-            {/* Placeholder for Maggie's Photo */}
             <div className="aspect-[3/4] bg-gray-200 rounded-xl overflow-hidden relative shadow-2xl">
                 <div className="absolute inset-0 flex items-center justify-center text-gray-400 flex-col">
                     <Camera size={48} className="mb-2 opacity-50"/>
                     <span className="uppercase tracking-widest text-sm">Foto de Maggie</span>
                 </div>
-                {/* Decorative Frame */}
                 <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-orange-200 rounded-xl -z-10"></div>
             </div>
         </div>
@@ -167,7 +154,7 @@ const MediaKit = () => {
           <p className="text-lg text-gray-600 leading-relaxed font-medium">
             {data.profile.bio_sub}
           </p>
-          
+
           <div className="mt-8 flex gap-2 flex-wrap">
             {["Fashion", "Beauty", "Lifestyle", "Travel"].map(tag => (
               <span key={tag} className="px-4 py-1 bg-orange-50 text-orange-800 text-xs uppercase tracking-wider rounded-full">#{tag}</span>
@@ -176,7 +163,6 @@ const MediaKit = () => {
         </div>
       </section>
 
-      {/* --- STATS DASHBOARD (Inspired by Valerie's Data) --- */}
       <section className="py-20 bg-white border-y border-gray-100 break-inside-avoid">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between mb-12">
@@ -184,7 +170,6 @@ const MediaKit = () => {
             <span className="text-sm text-gray-400">Actualizado: Octubre 2025</span>
           </div>
 
-          {/* Key Metrics Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             <div className="p-6 bg-[#FDFBF7] rounded-2xl text-center hover:shadow-md transition">
               <Users className="w-8 h-8 mx-auto mb-3 text-orange-400" />
@@ -208,10 +193,7 @@ const MediaKit = () => {
             </div>
           </div>
 
-          {/* Detailed Demographics */}
           <div className="grid md:grid-cols-3 gap-12">
-            
-            {/* Gender Split */}
             <div className="bg-[#FDFBF7] p-8 rounded-2xl break-inside-avoid">
               <h4 className="uppercase tracking-widest text-sm text-gray-500 mb-6 font-bold">Audiencia</h4>
               <div className="flex items-end justify-center gap-8 h-40">
@@ -230,7 +212,6 @@ const MediaKit = () => {
               </div>
             </div>
 
-            {/* Age Ranges */}
             <div className="bg-[#FDFBF7] p-8 rounded-2xl break-inside-avoid">
               <h4 className="uppercase tracking-widest text-sm text-gray-500 mb-6 font-bold">Rango de Edad</h4>
               <div className="space-y-4">
@@ -241,8 +222,8 @@ const MediaKit = () => {
                       <span className="font-bold">{age.percent}%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className="bg-gray-800 h-2 rounded-full" 
+                      <div
+                        className="bg-gray-800 h-2 rounded-full"
                         style={{ width: `${age.percent}%` }}
                       ></div>
                     </div>
@@ -251,7 +232,6 @@ const MediaKit = () => {
               </div>
             </div>
 
-            {/* Locations */}
             <div className="bg-[#FDFBF7] p-8 rounded-2xl break-inside-avoid">
               <h4 className="uppercase tracking-widest text-sm text-gray-500 mb-6 font-bold">Top Cities</h4>
               <div className="space-y-4">
@@ -268,7 +248,6 @@ const MediaKit = () => {
         </div>
       </section>
 
-      {/* --- VISUAL PORTFOLIO GRID --- */}
       <section className="py-6 overflow-hidden break-inside-avoid">
          <div className="flex gap-4 min-w-full overflow-x-auto pb-4 px-4 no-scrollbar">
             {[1,2,3,4,5].map((item) => (
@@ -280,7 +259,6 @@ const MediaKit = () => {
          </div>
       </section>
 
-      {/* --- SERVICES / RATE CARD --- */}
       <section className="py-20 max-w-5xl mx-auto px-6 break-before-page">
         <div className="text-center mb-16">
           <h3 className="text-4xl font-serif mb-4">Trabajemos Juntos</h3>
@@ -303,7 +281,6 @@ const MediaKit = () => {
         </div>
       </section>
 
-      {/* --- BRANDS --- */}
       <section className="py-16 border-t border-gray-200 text-center break-inside-avoid">
         <p className="uppercase tracking-widest text-xs text-gray-500 mb-8">Marcas que confían en mí</p>
         <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 px-6">
@@ -313,7 +290,6 @@ const MediaKit = () => {
         </div>
       </section>
 
-      {/* --- FOOTER --- */}
       <footer className="bg-gray-900 text-white py-20 text-center no-print">
          <h2 className="text-4xl md:text-6xl font-serif mb-8">Let's create magic.</h2>
          <p className="mb-8 text-gray-400">¿Tienes un proyecto en mente? Hablemos.</p>
